@@ -14,9 +14,14 @@ public class AccountDetails{
 	@EmbeddedId
 	private AccountDetailsPK accountDetails;
 	
+	@Column
+	private String deposit_date;
+	
 	@Builder
 	public AccountDetails(AccountDetailsPK accountDetails) {
-		this.accountDetails = accountDetails;
+		this.accountDetails.setAccount_no(accountDetails.getAccount_no());
+		this.accountDetails.setDeposit_amount(accountDetails.getDeposit_amount());
+		this.accountDetails.setDeposit_withdrawal_status(accountDetails.getDeposit_withdrawal_status());
 	}
 	
 //	@Builder

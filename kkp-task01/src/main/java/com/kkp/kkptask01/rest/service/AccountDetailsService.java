@@ -31,8 +31,8 @@ private final AccountDetailsRepository accountDetailsRepository;
      * @param id
      * @return
      */
-    public AccountDetails findAccountDetailsById(Long id) {
-        AccountDetails accountDetails = accountDetailsRepository.findById(id).orElse(new AccountDetails());
+    public AccountDetails findAccountDetailsById(AccountDetailsPK accountDetailsPK) {
+        AccountDetails accountDetails = accountDetailsRepository.findById(accountDetailsPK).orElse(new AccountDetails());
         return accountDetails;
     }
 
@@ -40,15 +40,16 @@ private final AccountDetailsRepository accountDetailsRepository;
      * @param AccountDetails
      * @return
      */
-    public AccountDetails save(AccountDetails accountDetails) {
+    public AccountDetails save(AccountDetailsPK accountDetailsPK) {
 		
     	LocalDate now = LocalDate.now();
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
     	String formatedNow = now.format(formatter);
     	
-    	AccountDetailsPK accountDetailsPK = new AccountDetailsPK();
-    	accountDetailsPK.setDeposit_date(formatedNow);
+    	AccountDetails accountDetails = new AccountDetails();
+    	accountDetails.setDeposit_date(formatedNow);
     	accountDetails.setAccountDetails(accountDetailsPK);
+//    	System.out.println("ac_NO1:"+accountDetails.getAccount_no());
         AccountDetails savedAccountDetails = accountDetailsRepository.save(accountDetails);
         return savedAccountDetails;
     }
@@ -56,8 +57,8 @@ private final AccountDetailsRepository accountDetailsRepository;
     /**
      * @param id
      */
-    public void deleteById(Long id) {
-    	accountDetailsRepository.deleteById(id);
+    public void deleteById(AccountDetailsPK accountDetailsPK) {
+    	accountDetailsRepository.deleteById(accountDetailsPK);
     }
 
 }

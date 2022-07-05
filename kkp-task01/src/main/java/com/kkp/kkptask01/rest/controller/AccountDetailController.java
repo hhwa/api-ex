@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kkp.kkptask01.rest.domain.AccountDetails;
+import com.kkp.kkptask01.rest.domain.AccountDetailsPK;
 import com.kkp.kkptask01.rest.service.AccountDetailsService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,15 +32,16 @@ private final AccountDetailsService accountDetailsService;
         return new ResponseEntity<>(accountDetailss, HttpStatus.OK);
     }
 	
-	@GetMapping("/{id}")
-    public ResponseEntity<?> getAccountDetailssById(@PathVariable("id") Long id) {
-    	AccountDetails persistAccountDetails = accountDetailsService.findAccountDetailsById(id);
-        return new ResponseEntity<>(persistAccountDetails, HttpStatus.OK);
-    }
+//	@GetMapping("/{id}")
+//    public ResponseEntity<?> getAccountDetailssById(@PathVariable("id") Long id) {
+//    	AccountDetails persistAccountDetails = accountDetailsService.findAccountDetailsById(id);
+//        return new ResponseEntity<>(persistAccountDetails, HttpStatus.OK);
+//    }
 
     @PostMapping
-    public ResponseEntity<?> postAccountDetails(@RequestBody AccountDetails accountDetails) {
-        AccountDetails savedAccountDetails = accountDetailsService.save(accountDetails);
+    public ResponseEntity<?> postAccountDetails(@RequestBody AccountDetailsPK accountDetailsPK) {
+    	System.out.println("controll :"+accountDetailsPK.getAccount_no());
+        AccountDetails savedAccountDetails = accountDetailsService.save(accountDetailsPK);
         return new ResponseEntity<>(savedAccountDetails, HttpStatus.CREATED);
     }
 
