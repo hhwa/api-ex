@@ -11,15 +11,13 @@ import lombok.*;
 @Entity
 @Table
 public class Account implements Serializable{
-	
+
 	@Id
-	@Column(name = "ROWID")
-	private String rowId;
-	
-	@Column
-	private Long id; 
 	@Column
 	private String account_no;
+	
+	@Column
+	private Long id;
 	
 	@Builder
 	public Account(Long id, String account_no) {

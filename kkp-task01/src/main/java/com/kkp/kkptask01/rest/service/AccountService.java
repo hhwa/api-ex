@@ -16,8 +16,6 @@ public class AccountService {
 	private final AccountRepository accountRepository;
 	
 	/**
-     * 페이징 처리된 계좌 리스트 반환 (REST API 전용)
-     *
      * @param pageable
      * @return
      */
@@ -26,19 +24,15 @@ public class AccountService {
     }
 
     /**
-     * 계좌 ID로 조회
-     *
      * @param id
      * @return
      */
-    public Account findAccountById(Long id) {
-        Account account = accountRepository.findById(id).orElse(new Account());
+    public Account findAccountById(String account_no) {
+    	Account account = accountRepository.findById(account_no).orElse(new Account());
         return account;
     }
 
     /**
-     * 계좌 추가
-     *
      * @param Account
      * @return
      */
@@ -48,11 +42,9 @@ public class AccountService {
     }
 
     /**
-     * 계좌 삭제
-     *
      * @param id
      */
-    public void deleteById(Long id) {
-    	accountRepository.deleteById(id);
+    public void deleteById(String account_no) {
+    	accountRepository.deleteById(account_no);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kkp.kkptask01.rest.domain.AccountDetails;
+import com.kkp.kkptask01.rest.domain.AccountDetailsPK;
 import com.kkp.kkptask01.rest.repository.AccountDetailsRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,6 @@ public class AccountDetailsService {
 private final AccountDetailsRepository accountDetailsRepository;
 	
 	/**
-     * 페이징 처리된 회원 리스트 반환 (REST API 전용)
-     *
      * @param pageable
      * @return
      */
@@ -29,8 +28,6 @@ private final AccountDetailsRepository accountDetailsRepository;
     }
 
     /**
-     * 회원 ID로 조회
-     *
      * @param id
      * @return
      */
@@ -40,8 +37,6 @@ private final AccountDetailsRepository accountDetailsRepository;
     }
 
     /**
-     * 회원 추가
-     *
      * @param AccountDetails
      * @return
      */
@@ -51,14 +46,14 @@ private final AccountDetailsRepository accountDetailsRepository;
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
     	String formatedNow = now.format(formatter);
     	
-    	accountDetails.setDeposit_date(formatedNow);
+    	AccountDetailsPK accountDetailsPK = new AccountDetailsPK();
+    	accountDetailsPK.setDeposit_date(formatedNow);
+    	accountDetails.setAccountDetails(accountDetailsPK);
         AccountDetails savedAccountDetails = accountDetailsRepository.save(accountDetails);
         return savedAccountDetails;
     }
 
     /**
-     * 회원 삭제
-     *
      * @param id
      */
     public void deleteById(Long id) {

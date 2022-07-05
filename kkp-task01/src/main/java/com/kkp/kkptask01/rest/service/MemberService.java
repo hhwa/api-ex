@@ -19,8 +19,6 @@ public class MemberService {
 	private final MemberRepository memberRepository;
 	
 	/**
-     * 페이징 처리된 회원 리스트 반환 (REST API 전용)
-     *
      * @param pageable
      * @return
      */
@@ -29,8 +27,6 @@ public class MemberService {
     }
 
     /**
-     * 회원 ID로 조회
-     *
      * @param id
      * @return
      */
@@ -40,8 +36,6 @@ public class MemberService {
     }
 
     /**
-     * 회원 추가
-     *
      * @param Member
      * @return
      */
@@ -57,8 +51,6 @@ public class MemberService {
     }
 
     /**
-     * 회원 삭제
-     *
      * @param id
      */
     public void deleteById(Long id) {

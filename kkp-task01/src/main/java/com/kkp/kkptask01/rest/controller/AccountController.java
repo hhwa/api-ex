@@ -31,9 +31,9 @@ private final AccountService accountService;
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 	
-	@GetMapping("/{id}")
-    public ResponseEntity<?> getAccountsById(@PathVariable("id") Long id) {
-    	Account persistAccount = accountService.findAccountById(id);
+	@GetMapping("/{account_no}")
+    public ResponseEntity<?> getAccountsById(@PathVariable("account_no") String account_no) {
+		Account persistAccount = accountService.findAccountById(account_no);
         return new ResponseEntity<>(persistAccount, HttpStatus.OK);
     }
 
