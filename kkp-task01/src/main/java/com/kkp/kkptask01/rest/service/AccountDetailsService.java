@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountDetailsService {
 	
-private final AccountDetailsRepository accountDetailsRepository;
+	private final AccountDetailsRepository accountDetailsRepository;
 	
 	/**
      * @param pageable
@@ -28,28 +28,16 @@ private final AccountDetailsRepository accountDetailsRepository;
     }
 
     /**
-     * @param id
-     * @return
-     */
-    public AccountDetails findAccountDetailsById(AccountDetailsPK accountDetailsPK) {
-        AccountDetails accountDetails = accountDetailsRepository.findById(accountDetailsPK).orElse(new AccountDetails());
-        return accountDetails;
-    }
-
-    /**
      * @param AccountDetails
      * @return
      */
-    public AccountDetails save(AccountDetailsPK accountDetailsPK) {
+    public AccountDetails save(AccountDetails accountDetails) {
 		
     	LocalDate now = LocalDate.now();
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
     	String formatedNow = now.format(formatter);
     	
-    	AccountDetails accountDetails = new AccountDetails();
     	accountDetails.setDeposit_date(formatedNow);
-    	accountDetails.setAccountDetails(accountDetailsPK);
-//    	System.out.println("ac_NO1:"+accountDetails.getAccount_no());
         AccountDetails savedAccountDetails = accountDetailsRepository.save(accountDetails);
         return savedAccountDetails;
     }
