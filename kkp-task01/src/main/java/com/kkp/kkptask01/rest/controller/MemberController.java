@@ -2,6 +2,8 @@ package com.kkp.kkptask01.rest.controller;
 
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.kkp.kkptask01.rest.domain.Member;
+import com.kkp.kkptask01.rest.domain.RemainAmoutInterface;
 import com.kkp.kkptask01.rest.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +34,12 @@ public class MemberController {
     public ResponseEntity<?> getMembersById(@PathVariable("id") Long id) {
     	Member persistMember = memberService.findMemberById(id);
         return new ResponseEntity<>(persistMember, HttpStatus.OK);
+    }
+	
+	@GetMapping("/remain/{id}")
+    public ResponseEntity<?> getAccountBalance(@PathVariable("id") Long id) {
+        List<RemainAmoutInterface> accountBalance = memberService.findRemainAmountById(id);
+        return new ResponseEntity<>(accountBalance, HttpStatus.OK);
     }
 
     @PostMapping
