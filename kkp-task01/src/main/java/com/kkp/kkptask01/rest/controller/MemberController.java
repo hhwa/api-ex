@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.kkp.kkptask01.rest.domain.Member;
-import com.kkp.kkptask01.rest.domain.RemainAmoutInterface;
+import com.kkp.kkptask01.rest.inter.RemainAmoutInterface;
 import com.kkp.kkptask01.rest.service.MemberService;
 
 import lombok.RequiredArgsConstructor;

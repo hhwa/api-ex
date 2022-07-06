@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kkp.kkptask01.rest.domain.Member;
-import com.kkp.kkptask01.rest.domain.RemainAmoutInterface;
+import com.kkp.kkptask01.rest.inter.RemainAmoutInterface;
 import com.kkp.kkptask01.rest.repository.MemberRepository;
 
 import lombok.*;

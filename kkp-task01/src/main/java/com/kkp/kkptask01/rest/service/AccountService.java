@@ -40,11 +40,4 @@ public class AccountService {
         Account savedAccount = accountRepository.save(account);
         return savedAccount;
     }
-
-    /**
-     * @param id
-     */
-    public void deleteById(String account_no) {
-    	accountRepository.deleteById(account_no);
-    }
 }
