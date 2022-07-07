@@ -21,3 +21,6 @@ spring:
       - classpath:schema.sql
       data-locations:
       - classpath:data.sql
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

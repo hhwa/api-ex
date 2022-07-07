@@ -21,6 +21,7 @@ import com.kkp.kkptask01.rest.inter.TotalBalanceInterface;
 import com.kkp.kkptask01.rest.inter.YearBalanceInterface;
 import com.kkp.kkptask01.rest.service.AccountDetailsService;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -30,33 +31,37 @@ public class AccountDetailController {
 	
 	private final AccountDetailsService accountDetailsService;
 	
+	@ApiOperation(value="List of account details")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAccountDetails(@PageableDefault Pageable pageable) {
         Page<AccountDetails> accountDetails = accountDetailsService.findAll(pageable);
         return new ResponseEntity<>(accountDetails, HttpStatus.OK);
     }
 	
+	@ApiOperation(value="Average of balance by age group")
 	@GetMapping("/avgbalance")
     public ResponseEntity<?> getAvgBalance() {
         List<AvgBalanceInterface> avgBalance = accountDetailsService.findAvgBalance();
         return new ResponseEntity<>(avgBalance, HttpStatus.OK);
     }
 	
+	@ApiOperation(value="Total balance for the year")
 	@GetMapping("/yearbalance/{yyyy}")
     public ResponseEntity<?> getYearBalance(@PathVariable("yyyy") int yyyy) {
         List<YearBalanceInterface> yearBalance = accountDetailsService.findYearBalance(yyyy);
         return new ResponseEntity<>(yearBalance, HttpStatus.OK);
     }
 	
+	@ApiOperation(value="Total balance by member over time period")
 	@GetMapping("/totalbalance/{startdate}/{enddate}")
     public ResponseEntity<?> getTotalBalanceByDate(@PathVariable("startdate") String startdate,@PathVariable("enddate") String enddate) {
         List<TotalBalanceInterface> totalBalance = accountDetailsService.findTotalBalanceByDate(startdate,enddate);
         return new ResponseEntity<>(totalBalance, HttpStatus.OK);
     }
 	
+	@ApiOperation(value="Add account details")
     @PostMapping
     public ResponseEntity<?> postAccountDetails(@RequestBody AccountDetails accountDetails) {
-    	System.out.println("controll :"+accountDetails.getAccountDetails().getAccount_no());
     	AccountDetails savedAccountDetails = accountDetailsService.save(accountDetails);
         return new ResponseEntity<>(savedAccountDetails, HttpStatus.CREATED);
     }

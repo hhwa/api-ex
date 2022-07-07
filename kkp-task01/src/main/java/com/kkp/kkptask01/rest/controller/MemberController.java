@@ -15,6 +15,7 @@ import com.kkp.kkptask01.rest.domain.Member;
 import com.kkp.kkptask01.rest.inter.RemainAmoutInterface;
 import com.kkp.kkptask01.rest.service.MemberService;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -24,24 +25,28 @@ public class MemberController {
 
 	private final MemberService memberService;
 	
+	@ApiOperation(value="List of member")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getMembers(@PageableDefault Pageable pageable) {
         Page<Member> members = memberService.findAll(pageable);
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
-	
+
+	@ApiOperation(value="MemberInfo By Id")
 	@GetMapping("/{id}")
     public ResponseEntity<?> getMembersById(@PathVariable("id") Long id) {
     	Member persistMember = memberService.findMemberById(id);
         return new ResponseEntity<>(persistMember, HttpStatus.OK);
     }
-	
+
+	@ApiOperation(value="balance by user's account")
 	@GetMapping("/remain/{id}")
     public ResponseEntity<?> getAccountBalance(@PathVariable("id") Long id) {
         List<RemainAmoutInterface> accountBalance = memberService.findRemainAmountById(id);
         return new ResponseEntity<>(accountBalance, HttpStatus.OK);
     }
 
+	@ApiOperation(value="Add Member")
     @PostMapping
     public ResponseEntity<?> postMember(@RequestBody Member member) {
         Member savedMember = memberService.save(member);
